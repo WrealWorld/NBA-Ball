@@ -126,6 +126,21 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
+const upButton = document.getElementById('upButton');
+const downButton = document.getElementById('downButton');
+
+// Handle touch movement
+upButton.addEventListener('touchstart', () => {
+  player.y -= player.speed * 2;
+});
+downButton.addEventListener('touchstart', () => {
+  player.y += player.speed * 2;
+});
+
+// Keep the player within bounds
+player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
+
+
 // Start the game
 updateScore();
 gameLoop();
